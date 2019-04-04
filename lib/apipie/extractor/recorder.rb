@@ -47,6 +47,7 @@ module Apipie
           @request_data = @params
         else
           @query = request.query_string
+          @query = request.env['rack.request.query_string'] if @query.blank?
         end
         @response_data = parse_data(response.body)
         @code = response.code
